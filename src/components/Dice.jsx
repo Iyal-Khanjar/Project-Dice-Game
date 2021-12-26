@@ -74,6 +74,8 @@ function Dice(props) {
         setRollTwo(null)
         setDiceTotalPlayer1(0)
         setDiceTotalPlayer2(0)
+        setRoundPlayer1(0)
+        setRoundPlayer2(0)
         setShowDice(false)
         setPlayerturn('player1')
         setNumberToWin('')
@@ -93,7 +95,7 @@ function Dice(props) {
     }
     console.log(numberToWin);
     return (
-        <div>
+        <div className='container'>
             <div className="players">
                 <div className="totalScores">
                     <div className="player1 ">
@@ -124,64 +126,68 @@ function Dice(props) {
                     </div>
                 </div>
             </div>
-            {showDice ? <div className='dices'>
-                <div className='dice1'>
+            <div className='conatinerForDiceAndBtns'>
+                {showDice ? <div className='dices'>
+                    <div className='dice1'>
+                        {
+                            rollOne === 1 ?
+                                <img src={dice1} alt="dice1" />
+                                : rollOne === 2 ?
+                                    <img src={dice2} alt="dice2" />
+                                    : rollOne === 3 ?
+                                        <img src={dice3} alt="dice3" />
+                                        : rollOne === 4 ?
+                                            <img src={dice4} alt="dice4" />
+                                            : rollOne === 5 ?
+                                                <img src={dice5} alt="dice5" />
+                                                : <img src={dice6} alt="dice6" />
+                        }
+                    </div>
+                    <div className='dice2'>
+                        {
+                            rollTwo === 1 ?
+                                <img src={dice1} alt="dice1" />
+                                : rollTwo === 2 ?
+                                    <img src={dice2} alt="dice2" />
+                                    : rollTwo === 3 ?
+                                        <img src={dice3} alt="dice3" />
+                                        : rollTwo === 4 ?
+                                            <img src={dice4} alt="dice4" />
+                                            : rollTwo === 5 ?
+                                                <img src={dice5} alt="dice5" />
+                                                : <img src={dice6} alt="dice6" />
+                        }
+                    </div>
+                </div> : <div className='dices'>
+                    <div className='dice1'>
+                        <img src={dice6} alt="dice6" />
+                    </div>
+                    <div className='dice2'>
+                        <img src={dice6} alt="dice6" />
+                    </div>
+                </div>
+                }
+                <div className="inputAndBtns">
                     {
-                        rollOne === 1 ?
-                            <img src={dice1} alt="dice1" />
-                            : rollOne === 2 ?
-                                <img src={dice2} alt="dice2" />
-                                : rollOne === 3 ?
-                                    <img src={dice3} alt="dice3" />
-                                    : rollOne === 4 ?
-                                        <img src={dice4} alt="dice4" />
-                                        : rollOne === 5 ?
-                                            <img src={dice5} alt="dice5" />
-                                            : <img src={dice6} alt="dice6" />
+                        <div className='playerTurn'>
+                            {playerturn}`s turn
+                        </div>
                     }
-                </div>
-                <div className='dice2'>
-                    {
-                        rollTwo === 1 ?
-                            <img src={dice1} alt="dice1" />
-                            : rollTwo === 2 ?
-                                <img src={dice2} alt="dice2" />
-                                : rollTwo === 3 ?
-                                    <img src={dice3} alt="dice3" />
-                                    : rollTwo === 4 ?
-                                        <img src={dice4} alt="dice4" />
-                                        : rollTwo === 5 ?
-                                            <img src={dice5} alt="dice5" />
-                                            : <img src={dice6} alt="dice6" />
-                    }
-                </div>
-            </div> : <div className='dices'>
-                <div className='dice1'>
-                    <img src={dice6} alt="dice6" />
-                </div>
-                <div className='dice2'>
-                    <img src={dice6} alt="dice6" />
-                </div>
-            </div>
-            }
-            {
-                <div className='playerTurn'>
-                    {playerturn}`s turn
-                </div>
-            }
-            {/* <Input type='text' value={numberToWin} onChange={input} /> */}
-            <div>
-                <input type="text" value={numberToWin} onChange={input} disabled={inputDisabled} />
-            </div>
-            <div className='btns'>
-                <div className='btnRollDice'>
-                    <button onClick={rollDice} disabled={disabled}>Roll Dice</button>
-                </div>
-                <div className='btnHold'>
-                    <button onClick={hold} disabled={disabled}>Hold</button>
-                </div>
-                <div className='btnRestart'>
-                    <button onClick={restart}>Restart</button>
+                    {/* <Input type='text' value={numberToWin} onChange={input} /> */}
+                    <div>
+                        <input type="text" value={numberToWin} onChange={input} disabled={inputDisabled} />
+                    </div>
+                    <div className='btns'>
+                        <div className='btnRollDice'>
+                            <button onClick={rollDice} disabled={disabled}>Roll Dice</button>
+                        </div>
+                        <div className='btnHold'>
+                            <button onClick={hold} disabled={disabled}>Hold</button>
+                        </div>
+                        <div className='btnRestart'>
+                            <button onClick={restart}>Restart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div >

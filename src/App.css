@@ -2,6 +2,16 @@ body {
 	margin: 0;
 	padding: 0;
 }
+.container{
+display: flex;	
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+.conatinerForDiceAndBtns{
+	display: flex;
+	
+}
 img {
 	border: 0.1rem solid black;
 	height: 5rem;
