@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import Btns from './Btns'
+import DiceNum6 from './DiceNum6'
+import DicesRoll from './DicesRoll'
 
 import dice1 from './img/dice1.png'
 import dice2 from './img/dice2.png'
@@ -7,11 +10,11 @@ import dice4 from './img/dice4.png'
 import dice5 from './img/dice5.png'
 import dice6 from './img/dice6.png'
 
-// import Input from './Input'
+import Input from './Input'
 
 
 
-function Dice(props) {
+function Dice() {
     const [rollOne, setRollOne] = useState(null)
     const [rollTwo, setRollTwo] = useState(null)
     const [diceTotalPlayer1, setDiceTotalPlayer1] = useState(0)
@@ -93,7 +96,7 @@ function Dice(props) {
         setRoundPlayer2(0)
         playerturn === 'player1' ? setPlayerturn('player2') : setPlayerturn('player1')
     }
-    console.log(numberToWin);
+
     return (
         <div className='container'>
             <div className="players">
@@ -127,45 +130,8 @@ function Dice(props) {
                 </div>
             </div>
             <div className='conatinerForDiceAndBtns'>
-                {showDice ? <div className='dices'>
-                    <div className='dice1'>
-                        {
-                            rollOne === 1 ?
-                                <img src={dice1} alt="dice1" />
-                                : rollOne === 2 ?
-                                    <img src={dice2} alt="dice2" />
-                                    : rollOne === 3 ?
-                                        <img src={dice3} alt="dice3" />
-                                        : rollOne === 4 ?
-                                            <img src={dice4} alt="dice4" />
-                                            : rollOne === 5 ?
-                                                <img src={dice5} alt="dice5" />
-                                                : <img src={dice6} alt="dice6" />
-                        }
-                    </div>
-                    <div className='dice2'>
-                        {
-                            rollTwo === 1 ?
-                                <img src={dice1} alt="dice1" />
-                                : rollTwo === 2 ?
-                                    <img src={dice2} alt="dice2" />
-                                    : rollTwo === 3 ?
-                                        <img src={dice3} alt="dice3" />
-                                        : rollTwo === 4 ?
-                                            <img src={dice4} alt="dice4" />
-                                            : rollTwo === 5 ?
-                                                <img src={dice5} alt="dice5" />
-                                                : <img src={dice6} alt="dice6" />
-                        }
-                    </div>
-                </div> : <div className='dices'>
-                    <div className='dice1'>
-                        <img src={dice6} alt="dice6" />
-                    </div>
-                    <div className='dice2'>
-                        <img src={dice6} alt="dice6" />
-                    </div>
-                </div>
+                {showDice ? <DicesRoll rollOne={rollOne} rollTwo={rollTwo} dice1={dice1} dice2={dice2} dice3={dice3} dice4={dice4} dice5={dice5} dice6={dice6} />
+                    : <DiceNum6 dice6={dice6} />
                 }
                 <div className="inputAndBtns">
                     {
@@ -173,21 +139,8 @@ function Dice(props) {
                             {playerturn}`s turn
                         </div>
                     }
-                    {/* <Input type='text' value={numberToWin} onChange={input} /> */}
-                    <div>
-                        <input type="text" value={numberToWin} onChange={input} disabled={inputDisabled} />
-                    </div>
-                    <div className='btns'>
-                        <div className='btnRollDice'>
-                            <button onClick={rollDice} disabled={disabled}>Roll Dice</button>
-                        </div>
-                        <div className='btnHold'>
-                            <button onClick={hold} disabled={disabled}>Hold</button>
-                        </div>
-                        <div className='btnRestart'>
-                            <button onClick={restart}>Restart</button>
-                        </div>
-                    </div>
+                    <Input type='text' numberToWin={numberToWin} input={input} inputDisabled={inputDisabled} />
+                    <Btns rollDice={rollDice} disabled={disabled} hold={hold} restart={restart} />
                 </div>
             </div>
         </div >
